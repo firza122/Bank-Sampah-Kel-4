@@ -21,6 +21,14 @@ class HomeActivity : AppCompatActivity() {
             val toInputData = Intent(this,ActivityInputData::class.java)
             startActivity(toInputData)
         }
+        btnCatatan.setOnClickListener {
+            val intent = Intent(this,ActivityCatatan::class.java)
+            startActivity(intent)
+        }
+        btnRiwayat.setOnClickListener {
+            val intent =   Intent(this,RiwayatActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

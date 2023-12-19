@@ -47,22 +47,6 @@ class ActivityInputData : AppCompatActivity() {
 
         }
 
-//        etBerat.addTextChangedListener(object : TextWatcher {
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-//            override fun afterTextChanged(editable: Editable) {
-//                etBerat.removeTextChangedListener(this)
-//                if (editable.length > 0) {
-//                    inputViewModel.setCounter(editable.toString().toInt())
-//                    inputViewModel.setharga()
-//                } else {
-//                    inputViewModel.setCounter(0)
-//                    inputViewModel.setharga()
-//                }
-//                etBerat.addTextChangedListener(this)
-//            }
-//        })
-
 
         inputViewModel.kategori.observe(this){newValue ->
             inputViewModel.setCounter(1)
@@ -86,3 +70,18 @@ class ActivityInputData : AppCompatActivity() {
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 }
+//        etBerat.addTextChangedListener(object : TextWatcher {
+//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+//            override fun afterTextChanged(editable: Editable) {
+//                etBerat.removeTextChangedListener(this)
+//                if (editable.length > 0) {
+//                    inputViewModel.setCounter(editable.toString().toInt())
+//                    inputViewModel.setharga()
+//                } else {
+//                    inputViewModel.setCounter(0)
+//                    inputViewModel.setharga()
+//                }
+//                etBerat.addTextChangedListener(this)
+//            }
+//        })
