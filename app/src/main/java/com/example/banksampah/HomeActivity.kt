@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
+import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var btnJemputSampah: CardView
@@ -13,6 +14,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
         btnCatatan = findViewById(R.id.cvKategori)
         btnRiwayat = findViewById(R.id.cvHistory)
         btnJemputSampah = findViewById(R.id.cvInput)

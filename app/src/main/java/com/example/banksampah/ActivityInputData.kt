@@ -1,15 +1,19 @@
 package com.example.banksampah
 
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.lifecycle.ViewModelProvider
 import java.security.Provider
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ActivityInputData : AppCompatActivity() {
     private lateinit var dropdown: Spinner
@@ -55,6 +59,24 @@ class ActivityInputData : AppCompatActivity() {
             etHarga.text = inputViewModel.harga.value.toString().toEditable()
 
 
+        }
+        etTanggal.setOnClickListener { view: View? ->
+            val tanggalJemput = Calendar.getInstance()
+            val date =
+                DatePickerDialog.OnDateSetListener { view1: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    tanggalJemput[Calendar.YEAR] = year
+                    tanggalJemput[Calendar.MONTH] = monthOfYear
+                    tanggalJemput[Calendar.DAY_OF_MONTH] = dayOfMonth
+                    val strFormatDefault = "d MMMM yyyy"
+                    val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+                    etTanggal.setText(simpleDateFormat.format(tanggalJemput.time))
+                }
+            DatePickerDialog(
+                this@ActivityInputData, date,
+                tanggalJemput[Calendar.YEAR],
+                tanggalJemput[Calendar.MONTH],
+                tanggalJemput[Calendar.DAY_OF_MONTH]
+            ).show()
         }
 
 
