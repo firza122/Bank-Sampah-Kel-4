@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -14,7 +15,7 @@ class RegisterBaruActivity : AppCompatActivity() {
     private lateinit var etUsername: EditText
     private lateinit var etEmail:EditText
     private lateinit var etPassword: EditText
-    private lateinit var btnRegister: ImageView
+    private lateinit var btnRegister: MaterialButton
     private lateinit var tvLogin: TextView
     private lateinit var firestore: FirebaseFirestore
     private lateinit var firebaseAuth: FirebaseAuth

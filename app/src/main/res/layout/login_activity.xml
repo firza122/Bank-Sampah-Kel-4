@@ -82,16 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
 
-    <ImageView
-        android:id="@+id/loginbtn"
-        android:layout_width="208dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordlogin"
-        app:srcCompat="@drawable/login" />
+
 
     <EditText
         android:id="@+id/emaillogin"
@@ -114,11 +105,32 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:hint="12345678"
+        android:hint="minimal 8 digit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:text="login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:theme="@style/Theme.MaterialComponents"
+        app:backgroundTint="#03A9F4"
+        app:cornerRadius="50dp"
+        app:elevation="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvToRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordlogin"
+        app:layout_constraintVertical_bias="0.495"
+        app:rippleColor="@color/purple_700" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

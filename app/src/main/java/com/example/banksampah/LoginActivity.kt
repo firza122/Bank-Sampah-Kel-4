@@ -7,13 +7,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var btnGambarLogin: ImageView
+    private lateinit var btnGambarLogin: MaterialButton
     private lateinit var tvPindahRegister: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
