@@ -23,6 +23,8 @@ class ActivityInputData : AppCompatActivity() {
     private lateinit var etCatatan: EditText
     private lateinit var etHarga: EditText
     private lateinit var etAlamat : EditText
+    private lateinit var etbuttontambah : Button
+    private lateinit var etbuttonkurang : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_data2)
@@ -35,6 +37,15 @@ class ActivityInputData : AppCompatActivity() {
         etAlamat = findViewById(R.id.inputAlamat)
         etTanggal = findViewById(R.id.inputTanggal)
         etCatatan = findViewById(R.id.inputTambahan)
+        etbuttontambah = findViewById(R.id.buttontambah)
+        etbuttonkurang = findViewById(R.id.buttonkurang)
+
+        etbuttontambah.setOnClickListener {
+            inputViewModel.penjumlahanbtnberat()
+        }
+        etbuttonkurang.setOnClickListener {
+            inputViewModel.penguranganbtnberat(this)
+        }
 
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemClickListener,
@@ -52,13 +63,11 @@ class ActivityInputData : AppCompatActivity() {
 
         }
 
-
         inputViewModel.kategori.observe(this){newValue ->
             inputViewModel.setCounter(1)
             etBerat.text = inputViewModel.counter.value.toString().toEditable()
             inputViewModel.setharga()
             etHarga.text = inputViewModel.harga.value.toString().toEditable()
-
 
         }
         etTanggal.setOnClickListener { view: View? ->
