@@ -18,7 +18,7 @@ class ActivityInputData : AppCompatActivity() {
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var inputViewModel: InputDataViewModel
     private lateinit var etNama: EditText
-    private lateinit var etBerat: EditText
+    private lateinit var tvBerat: TextView
     private lateinit var etTanggal : EditText
     private lateinit var etCatatan: EditText
     private lateinit var etHarga: EditText
@@ -33,7 +33,7 @@ class ActivityInputData : AppCompatActivity() {
         dropdown = findViewById(R.id.spKategori)
         etNama = findViewById(R.id.inputNama)
         etHarga = findViewById(R.id.inputHarga)
-        etBerat = findViewById(R.id.inputBerat)
+        tvBerat = findViewById(R.id.BeratSampah)
         etAlamat = findViewById(R.id.inputAlamat)
         etTanggal = findViewById(R.id.inputTanggal)
         etCatatan = findViewById(R.id.inputTambahan)
@@ -65,7 +65,7 @@ class ActivityInputData : AppCompatActivity() {
 
         inputViewModel.kategori.observe(this){newValue ->
             inputViewModel.setCounter(1)
-            etBerat.text = inputViewModel.counter.value.toString().toEditable()
+            tvBerat.text = inputViewModel.counter.value.toString().toEditable()
             inputViewModel.setharga()
             etHarga.text = inputViewModel.harga.value.toString().toEditable()
 
@@ -93,7 +93,7 @@ class ActivityInputData : AppCompatActivity() {
 
         inputViewModel.counter.observe(this){newValue ->
             inputViewModel.setharga()
-            etBerat.text = newValue.toString().toEditable()
+            tvBerat.text = newValue.toString().toEditable()
 
         }
 
