@@ -1,5 +1,7 @@
 package com.example.banksampah
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +19,6 @@ class InputDataViewModel : ViewModel() {
     val counter: LiveData<Int>
         get() = _counter
 
-
     fun setKategori(kategoribaru: String){
         _kategori.value = kategoribaru
     }
@@ -33,6 +34,17 @@ class InputDataViewModel : ViewModel() {
             _harga.value = 6000 * counter.value!!
         }else {
             _harga.value = 0 * counter.value!!
+        }
+    }
+    fun penjumlahanbtnberat() {
+        _counter.value =+ 1
+
+    }
+    fun penguranganbtnberat(context: Context) {
+        if (_counter.value!! <= 1) {
+            Toast.makeText(context, "Tidak bisa dikurangi lagi", Toast.LENGTH_SHORT).show()
+        }else {
+            _counter.value =-1
         }
     }
 
