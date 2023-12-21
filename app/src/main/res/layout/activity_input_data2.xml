@@ -191,16 +191,37 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/inputBerat"
-                                android:layout_width="match_parent"
+                                android:layout_width="41dp"
                                 android:layout_height="50dp"
+                                android:layout_marginStart="35dp"
                                 android:backgroundTint="@color/deep_green"
-                                android:hint="@string/hint_berat"
+                                android:hint="5kg"
                                 android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLines="1"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
-                                />
+                                android:textSize="16sp" />
+
+                            <Button
+                                android:id="@+id/buttontambah"
+                                android:layout_width="30dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="-45dp"
+                                android:backgroundTint="@color/deep_green"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                            <Button
+                                android:id="@+id/buttonkurang"
+                                android:layout_width="30dp"
+                                android:text="+"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="1dp"
+                                android:layout_marginTop="-40dp"
+                                android:layout_height="40dp"
+                                android:backgroundTint="@color/deep_green"
+                                android:textSize="16sp" />
+
 
 
                         </LinearLayout>
@@ -293,6 +314,7 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/deep_green"
                             android:hint="@string/hint_alamat"
+
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:minHeight="50dp"

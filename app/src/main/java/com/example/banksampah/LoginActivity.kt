@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Email dan Password Harus Diisi", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }else if (etPassword.text.length <= 6){
-                Toast.makeText(this, "Password Seng Dowo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Password Kurang panjang", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }else{
                 val email = etEmail.text.toString()

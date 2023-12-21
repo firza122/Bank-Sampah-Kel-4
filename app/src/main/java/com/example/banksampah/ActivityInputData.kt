@@ -6,17 +6,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.AdapterView
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import java.security.Provider
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ActivityInputData : AppCompatActivity() {
     private lateinit var dropdown: Spinner
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var inputViewModel: InputDataViewModel
     private lateinit var etNama: EditText
     private lateinit var etBerat: EditText
@@ -28,6 +27,7 @@ class ActivityInputData : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_data2)
         inputViewModel = ViewModelProvider(this).get(InputDataViewModel::class.java)
+        firebaseFirestore = FirebaseFirestore.getInstance()
         dropdown = findViewById(R.id.spKategori)
         etNama = findViewById(R.id.inputNama)
         etHarga = findViewById(R.id.inputHarga)
@@ -35,6 +35,7 @@ class ActivityInputData : AppCompatActivity() {
         etAlamat = findViewById(R.id.inputAlamat)
         etTanggal = findViewById(R.id.inputTanggal)
         etCatatan = findViewById(R.id.inputTambahan)
+
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
@@ -81,8 +82,6 @@ class ActivityInputData : AppCompatActivity() {
 
 
 
-
-
         inputViewModel.counter.observe(this){newValue ->
             inputViewModel.setharga()
             etBerat.text = newValue.toString().toEditable()
@@ -90,6 +89,7 @@ class ActivityInputData : AppCompatActivity() {
         }
 
     }
+
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 }
 //        etBerat.addTextChangedListener(object : TextWatcher {
