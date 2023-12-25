@@ -72,6 +72,10 @@ class ActivityInputData : AppCompatActivity() {
             tvBerat.text = inputViewModel.counter.value.toString().toEditable()
             inputViewModel.setharga()
             etHarga.text = inputViewModel.harga.value.toString().toEditable()
+        }
+        inputViewModel.counter.observe(this){newValue ->
+            inputViewModel.setharga()
+            tvBerat.text = newValue.toString().toEditable()
 
         }
         etTanggal.setOnClickListener { view: View? ->
@@ -95,13 +99,6 @@ class ActivityInputData : AppCompatActivity() {
 
 
 
-        inputViewModel.counter.observe(this){newValue ->
-            inputViewModel.setharga()
-            tvBerat.text = newValue.toString().toEditable()
-
-        }
-
-
 
     btncheckout.setOnClickListener {
         if (etNama.text.isEmpty() || etTanggal.text.isEmpty() || etAlamat.text.isEmpty() || (etCatatan.text.isEmpty()) || (tvBerat.text.isEmpty()) || (etHarga.text.isEmpty())) {
@@ -123,7 +120,7 @@ class ActivityInputData : AppCompatActivity() {
     fun inputFirebase (aNama:String, bKategori:String, cCatatan: String, dBerat:String, eHarga:String, fTanggal: String,gAlamat : String){
         val data = hashMapOf(
             "aNama" to aNama,
-            "bKategori" to bKategori,
+            "bKategori" to inputViewModel.kategori.value,
             "cCatatan" to cCatatan,
             "dBerat" to dBerat,
             "eHarga" to eHarga,
@@ -131,7 +128,7 @@ class ActivityInputData : AppCompatActivity() {
             "gAlamat" to gAlamat,
         )
         firebaseFirestore.collection("input").add(data).addOnSuccessListener {
-            Toast.makeText(this,"Berhasil Tambah Data",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Pesanan sedang diproses,cek di menu riwayat!",Toast.LENGTH_SHORT).show()
             val toHome = Intent(this,HomeActivity::class.java)
             startActivity(toHome)
         }
