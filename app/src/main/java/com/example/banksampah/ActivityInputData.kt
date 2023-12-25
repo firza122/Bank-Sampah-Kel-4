@@ -50,7 +50,9 @@ class ActivityInputData : AppCompatActivity() {
         etbuttonkurang.setOnClickListener {
             inputViewModel.penguranganbtnberat(this)
         }
-
+        inputViewModel.counter.observe(this){
+            tvBerat.text = it.toString()
+        }
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {

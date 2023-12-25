@@ -37,7 +37,7 @@ class InputDataViewModel : ViewModel() {
         }
     }
     fun penjumlahanbtnberat() {
-        _counter.value =+ 1
+        _counter.value = _counter.value?.plus(1)
 
     }
     fun penguranganbtnberat(context: Context) {
