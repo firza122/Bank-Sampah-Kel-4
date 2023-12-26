@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class RiwayatActivity : AppCompatActivity() {
     private lateinit var rvRiwayat: RecyclerView
@@ -43,6 +46,27 @@ class RiwayatActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch { getDataRiwayat() }
+    }
+    suspend fun getDataRiwayat(){
+        val data  = firestore.collection("dataJemputSampah").whereEqualTo("email",firebaseAuth.currentUser!!.email).get().await()
+        withContext(Dispatchers.IO){
+            data?.let {document ->
+                val listRiwayat = document.map { doc ->
+                    RiwayatModel(
+                        doc.id,
+                        doc.getString("aNama")?:"",
+                        doc.getString("bKategori")?:"",
+                        doc.getString("cCatatan")?:"",
+                        doc.getString("dBerat")?:"",
+                        (doc["eHarga"] as? Number)?.toInt()?: 0,
+                        doc.getString("fTanggal")?:"",
+                        doc.getString("gAlamat")?:"",
+                        doc.getString("status")?:""
+                    )
+                }
+                riwayatViewModel._listRiwayat.postValue(listRiwayat.toMutableList())
+            }
+        }
     }
 
     }
