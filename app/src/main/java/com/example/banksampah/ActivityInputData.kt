@@ -129,7 +129,7 @@ class ActivityInputData : AppCompatActivity() {
             "fTanggal" to fTanggal,
             "gAlamat" to gAlamat,
         )
-        firebaseFirestore.collection("input").add(data).addOnSuccessListener {
+        firebaseFirestore.collection("dataJemputSampah").add(data).addOnSuccessListener {
             Toast.makeText(this,"Pesanan sedang diproses,cek di menu riwayat!",Toast.LENGTH_SHORT).show()
             val toHome = Intent(this,HomeActivity::class.java)
             startActivity(toHome)
