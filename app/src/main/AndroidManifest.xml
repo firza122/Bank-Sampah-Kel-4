@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31">
-        <activity6
+        <activity
             android:name=".RiwayatActivity"
             android:exported="false" />
         <activity
