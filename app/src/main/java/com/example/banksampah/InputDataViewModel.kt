@@ -34,22 +34,27 @@ class InputDataViewModel : ViewModel() {
         }else if (kategori.value == "Toples Makanan"){
             _hargaSatuan.value = 6000
         }else {
-            _hargaSatuan.value = 0
+            _hargaSatuan.value = 1500
         }
     }
     fun penjumlahanbtnberat() {
-        _counter.value = _counter.value?.plus(1)
+        _counter.value = _counter.value!! + 1
+        updateHarga()
 
     }
     fun penguranganbtnberat(context: Context) {
         if (_counter.value!! <= 1) {
             Toast.makeText(context, "Tidak bisa dikurangi lagi", Toast.LENGTH_SHORT).show()
         }else {
-            _counter.value =-1
+            _counter.value = -1
+            updateHarga()
         }
     }
 
-    fun setCounter(counter: Int){
-        _counter.value = counter
+    fun setUlangCounter(){
+        _counter.value = 1
+    }
+    fun updateHarga(){
+        _harga.value = _hargaSatuan.value!!* _counter.value!!
     }
 }
