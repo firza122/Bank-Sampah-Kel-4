@@ -1,5 +1,6 @@
 package com.example.banksampah
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.security.Provider
 import java.text.SimpleDateFormat
@@ -28,6 +30,8 @@ class ActivityInputData : AppCompatActivity() {
     private lateinit var etbuttontambah : Button
     private lateinit var etbuttonkurang : Button
     private lateinit var btncheckout : MaterialButton
+    private lateinit var firebaseAuth: FirebaseAuth
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_data2)
@@ -36,6 +40,7 @@ class ActivityInputData : AppCompatActivity() {
         dropdown = findViewById(R.id.spKategori)
         etNama = findViewById(R.id.inputNama)
         etHarga = findViewById(R.id.inputHarga)
+        firebaseAuth = FirebaseAuth.getInstance()
         tvBerat = findViewById(R.id.BeratSampah)
         etAlamat = findViewById(R.id.inputAlamat)
         etTanggal = findViewById(R.id.inputTanggal)

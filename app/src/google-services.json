@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "979142653904",
+    "project_id": "banksampah1-d15fa",
+    "storage_bucket": "banksampah1-d15fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979142653904:android:018f246c68a88420f2ebd5",
+        "android_client_info": {
+          "package_name": "com.example.banksampah"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoYliFt7u9VAN7sro5DloqB5AEeQ14bvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979142653904:android:ee64cf9159817066f2ebd5",
+        "android_client_info": {
+          "package_name": "com.example.banksampahkelompok4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoYliFt7u9VAN7sro5DloqB5AEeQ14bvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
