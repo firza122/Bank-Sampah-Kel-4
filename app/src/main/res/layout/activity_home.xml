@@ -36,15 +36,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tittle_welcome"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="23sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="di aplikasi bank sampah kelompok 4"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
