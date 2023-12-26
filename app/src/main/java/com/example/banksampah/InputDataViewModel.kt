@@ -10,6 +10,7 @@ class InputDataViewModel : ViewModel() {
     private var _kategori:MutableLiveData<String> = MutableLiveData("test")
     private var _harga: MutableLiveData<Int> = MutableLiveData(0)
     private var _counter: MutableLiveData<Int> = MutableLiveData(0)
+    private var _hargaSatuan: MutableLiveData<Int> = MutableLiveData(0)
     val kategori: LiveData<String>
         get() = _kategori
 
@@ -25,15 +26,15 @@ class InputDataViewModel : ViewModel() {
 
     fun setharga(){
         if (kategori.value == "Botol Air Mineral"){
-            _harga.value = 1500 * counter.value!!
+            _hargaSatuan.value = 1500
         }else if (kategori.value == "Botol Sabun / Sampo"){
-            _harga.value = 4000 * counter.value!!
+            _hargaSatuan.value = 4000
         }else if (kategori.value == "Jerigen"){
-            _harga.value = 5000 * counter.value!!
+            _hargaSatuan.value = 5000
         }else if (kategori.value == "Toples Makanan"){
-            _harga.value = 6000 * counter.value!!
+            _hargaSatuan.value = 6000
         }else {
-            _harga.value = 0 * counter.value!!
+            _hargaSatuan.value = 0
         }
     }
     fun penjumlahanbtnberat() {
