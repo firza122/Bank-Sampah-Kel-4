@@ -45,7 +45,7 @@ class ActivityInputData : AppCompatActivity() {
         etAlamat = findViewById(R.id.inputAlamat)
         etTanggal = findViewById(R.id.inputTanggal)
         etCatatan = findViewById(R.id.inputTambahan)
-        btncheckout =findViewById(R.id.btnCheckout)
+        btncheckout = findViewById(R.id.btnCheckout)
         etbuttontambah = findViewById(R.id.buttontambah)
         etbuttonkurang = findViewById(R.id.buttonkurang)
 
@@ -74,13 +74,13 @@ class ActivityInputData : AppCompatActivity() {
         }
         tvBerat.text = inputViewModel.counter.value.toString()
 
-        inputViewModel.kategori.observe(this){newValue ->
+        inputViewModel.kategori.observe(this) { newValue ->
             inputViewModel.setharga()
             inputViewModel.updateHarga()
             etHarga.text = "Rp.${inputViewModel.harga.value.toString()}".toEditable()
             tvBerat.text = inputViewModel.counter.value.toString().toEditable()
         }
-        inputViewModel.counter.observe(this){newValue ->
+        inputViewModel.counter.observe(this) { newValue ->
             inputViewModel.updateHarga()
             tvBerat.text = newValue.toString().toEditable()
             etHarga.text = "Rp.${inputViewModel.harga.value.toString()}".toEditable()
@@ -107,7 +107,6 @@ class ActivityInputData : AppCompatActivity() {
 
 
 
-
         btncheckout.setOnClickListener {
             if (etNama.text.isEmpty() || etTanggal.text.isEmpty() || etAlamat.text.isEmpty() || (etCatatan.text.isEmpty()) || (tvBerat.text.isEmpty()) || (etHarga.text.isEmpty())) {
                 Toast.makeText(this, "Data tidak boleh ada yang kosong!", Toast.LENGTH_SHORT).show()
@@ -119,12 +118,11 @@ class ActivityInputData : AppCompatActivity() {
                 val eHarga = inputViewModel.harga.value
                 val fTanggal = etTanggal.text.toString()
                 val gAlamat = etAlamat.text.toString()
-                inputFirebase(aNama,cCatatan,dBerat,eHarga!!,fTanggal,gAlamat)
+                inputFirebase(aNama, cCatatan, dBerat, eHarga!!, fTanggal, gAlamat)
             }
-
         }
     }
-    fun inputFirebase (aNama:String, cCatatan: String, dBerat:String, eHarga:String, fTanggal: String,gAlamat : String){
+    fun inputFirebase (aNama:String, cCatatan: String, dBerat:String, eHarga:Int, fTanggal: String,gAlamat : String){
         val data = hashMapOf(
             "aNama" to aNama,
             "bKategori" to inputViewModel.kategori.value,
