@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,19 @@ class RiwayatActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         firebaseAuth = FirebaseAuth.getInstance()
         riwayatViewModel = ViewModelProvider(this)[RiwayatViewModel::class.java]
+
+        riwayatViewModel.listRiwayatBaru.observe(this){newValue ->
+            if (newValue.size == 0){
+                rvRiwayat.layoutManager = LinearLayoutManager(this)
+                rvRiwayat.adapter = RiwayatAdapter(newValue,this,riwayatViewModel)
+            }else{
+                rvRiwayat.layoutManager = LinearLayoutManager(this)
+                rvRiwayat.adapter = RiwayatAdapter(newValue,this,riwayatViewModel)
+                tvSaldo.text = "Rp. ${riwayatViewModel.getHarga()}"
+            }
+
+
+        }
 
 
 
