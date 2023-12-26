@@ -133,7 +133,7 @@ class ActivityInputData : AppCompatActivity() {
             "eHarga" to eHarga,
             "fTanggal" to fTanggal,
             "gAlamat" to gAlamat,
-            "status" to "masih dalam proses"
+            "status" to "masih dalam proses",
             "email" to firebaseAuth.currentUser!!.email
         )
         firebaseFirestore.collection("dataJemputSampah").add(data).addOnSuccessListener {
