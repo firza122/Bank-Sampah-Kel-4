@@ -55,9 +55,7 @@ class ActivityInputData : AppCompatActivity() {
         etbuttonkurang.setOnClickListener {
             inputViewModel.penguranganbtnberat(this)
         }
-        inputViewModel.counter.observe(this){
-            tvBerat.text = it.toString()
-        }
+
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
@@ -67,22 +65,25 @@ class ActivityInputData : AppCompatActivity() {
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 inputViewModel.setKategori(resources.getStringArray(R.array.kategori_sampah)[p2])
+                inputViewModel.setUlangCounter()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
 
         }
+        tvBerat.text = inputViewModel.counter.value.toString()
 
         inputViewModel.kategori.observe(this){newValue ->
-            inputViewModel.setCounter(1)
-            tvBerat.text = inputViewModel.counter.value.toString().toEditable()
             inputViewModel.setharga()
-            etHarga.text = inputViewModel.harga.value.toString().toEditable()
+            inputViewModel.updateHarga()
+            etHarga.text = "Rp.${inputViewModel.harga.value.toString()}".toEditable()
+            tvBerat.text = inputViewModel.counter.value.toString().toEditable()
         }
         inputViewModel.counter.observe(this){newValue ->
-            inputViewModel.setharga()
+            inputViewModel.updateHarga()
             tvBerat.text = newValue.toString().toEditable()
+            etHarga.text = "Rp.${inputViewModel.harga.value.toString()}".toEditable()
 
         }
         etTanggal.setOnClickListener { view: View? ->
@@ -107,24 +108,23 @@ class ActivityInputData : AppCompatActivity() {
 
 
 
-    btncheckout.setOnClickListener {
-        if (etNama.text.isEmpty() || etTanggal.text.isEmpty() || etAlamat.text.isEmpty() || (etCatatan.text.isEmpty()) || (tvBerat.text.isEmpty()) || (etHarga.text.isEmpty())) {
-            Toast.makeText(this, "Data tidak boleh ada yang kosong!", Toast.LENGTH_SHORT).show()
-            return@setOnClickListener
-        } else {
-            val aNama = etNama.text.toString()
-            val bKategori = dropdown.textDirection.toString()
-            val cCatatan = etCatatan.text.toString()
-            val dBerat = tvBerat.text.toString()
-            val eHarga = etHarga.text.toString()
-            val fTanggal = etTanggal.text.toString()
-            val gAlamat = etAlamat.text.toString()
-           inputFirebase(aNama,bKategori,cCatatan,dBerat,eHarga,fTanggal,gAlamat)
-        }
+        btncheckout.setOnClickListener {
+            if (etNama.text.isEmpty() || etTanggal.text.isEmpty() || etAlamat.text.isEmpty() || (etCatatan.text.isEmpty()) || (tvBerat.text.isEmpty()) || (etHarga.text.isEmpty())) {
+                Toast.makeText(this, "Data tidak boleh ada yang kosong!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else {
+                val aNama = etNama.text.toString()
+                val cCatatan = etCatatan.text.toString()
+                val dBerat = tvBerat.text.toString()
+                val eHarga = inputViewModel.harga.value
+                val fTanggal = etTanggal.text.toString()
+                val gAlamat = etAlamat.text.toString()
+                inputFirebase(aNama,cCatatan,dBerat,eHarga!!,fTanggal,gAlamat)
+            }
 
+        }
     }
-    }
-    fun inputFirebase (aNama:String, bKategori:String, cCatatan: String, dBerat:String, eHarga:String, fTanggal: String,gAlamat : String){
+    fun inputFirebase (aNama:String, cCatatan: String, dBerat:String, eHarga:String, fTanggal: String,gAlamat : String){
         val data = hashMapOf(
             "aNama" to aNama,
             "bKategori" to inputViewModel.kategori.value,
@@ -133,6 +133,8 @@ class ActivityInputData : AppCompatActivity() {
             "eHarga" to eHarga,
             "fTanggal" to fTanggal,
             "gAlamat" to gAlamat,
+            "status" to "masih dalam proses"
+            "email" to firebaseAuth.currentUser!!.email
         )
         firebaseFirestore.collection("dataJemputSampah").add(data).addOnSuccessListener {
             Toast.makeText(this,"Pesanan sedang diproses,cek di menu riwayat!",Toast.LENGTH_SHORT).show()
