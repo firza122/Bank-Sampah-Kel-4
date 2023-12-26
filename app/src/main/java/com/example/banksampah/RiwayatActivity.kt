@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RiwayatActivity : AppCompatActivity() {
     private lateinit var rvRiwayat: RecyclerView
@@ -35,11 +37,12 @@ class RiwayatActivity : AppCompatActivity() {
                 rvRiwayat.adapter = RiwayatAdapter(newValue,this,riwayatViewModel)
                 tvSaldo.text = "Rp. ${riwayatViewModel.getHarga()}"
             }
-
-
+        }
+        riwayatViewModel.harga.observe(this){newValue ->
+            tvSaldo.text = newValue.toString()
         }
 
-
-
+        GlobalScope.launch { getDataRiwayat() }
     }
+
     }
